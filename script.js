@@ -1,39 +1,34 @@
-(() => { 
+function calender() {
+	var day = ['रविवार','सोमवार','मंगलवार','बुधवार','बृहस्पतिवार','शुक्रवार','शनिवार'];
+	var month = ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितंबर","अक्टूबर","नवंबर","दिसंबर"];
+	var d = new Date();
+	var hours = d.getHours();
+	var mins = d.getMinutes();
+	var secs = d.getSeconds();
+	if (hours<10){
+		hours = '0'+hours;
+	}
+	if (mins<10){
+		mins = '0'+mins;
+	}
+	if (secs<10){
+		secs = '0'+secs;
+	}
 
-    const secondline = document.querySelector('.line-second');
-    const minuteline = document.querySelector('.line-minute');
-    const hourline = document.querySelector('.line-hour');
-  
-    let rotations = [0, 0, 0] // [second, minutes, hours]
-    
-    function setTime() {
-      const now = new Date();
-  
-      const seconds = now.getSeconds();
-      const minutes = now.getMinutes();
-      const hours = now.getHours() % 12;
-  
-      if (seconds === 0) {
-        rotations[0]++;
-      }
-  
-      if (minutes === 0 && seconds === 0) {
-        rotations[1]++;
-      }
-  
-      if (hours === 0 && minutes === 0 && seconds === 0) {
-        rotations[2]++;
-      }
-  
-      const secondsDeg = (seconds / 60 * 360) + (rotations[0] * 360);
-      const minutesDeg = (minutes / 60 * 360) + (rotations[1] * 360);
-      const hoursDeg = (hours / 12 * 360) + (minutes / 60 * 30) + (rotations[2] * 360);
-  
-      secondline.style.transform = `rotate(${secondsDeg}deg)`;
-      minuteline.style.transform = `rotate(${minutesDeg}deg)`;
-      hourline.style.transform = `rotate(${hoursDeg}deg)`;
-    }
-  
-    setTime();
-    setInterval(setTime, 1000);
-  })();
+	setText('calender-day',day[d.getDay()]);
+	setText('calender-date',d.getDate());
+	setText('calender-month-year', month[d.getMonth()]+' '+(1900+d.getYear()));
+	setText('time',hours+":"+mins+":"+secs);
+};
+setInterval(calender, 1000)
+
+function setText(id, val) {
+	if(val<10){
+		val='0'+val;
+	}
+	document.getElementById(id).innerHTML=val;
+};
+
+window.onload=calender;
+
+ 
