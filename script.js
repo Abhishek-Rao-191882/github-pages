@@ -1,4 +1,4 @@
-function getCalender() {
+function calender() {
 	var day = ['रविवार','सोमवार','मंगलवार','बुधवार','बृहस्पतिवार','शुक्रवार','शनिवार'];
 	var month = ["जनवरी","फरवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितंबर","अक्टूबर","नवंबर","दिसंबर"];
 	var d = new Date();
@@ -21,7 +21,7 @@ function getCalender() {
 	setText('time',hours+":"+mins+":"+secs);
 };
 
-setInterval(getCalender, 1000)
+setInterval(calender, 1000)
 
 function setText(id, val) {
 	if(val<10){
@@ -30,6 +30,6 @@ function setText(id, val) {
 	document.getElementById(id).innerHTML=val;
 };
 
-window.onload=getCalender;
+window.onload=calender;
 
  
